@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021e601885e97a941b6971bddc7fe627, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: 
+  nameW: Pistol
+  damage: 10
+  reloadTime: 0.1
+  speedBullet: 8
+  rangeBullet: 6
+  bulletPfb: {fileID: 7356475007131271216, guid: 4744d679f2f8ef745b9a54fb49a40e95, type: 3}
