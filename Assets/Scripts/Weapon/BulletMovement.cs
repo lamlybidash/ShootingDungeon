@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +27,7 @@ public class BulletMovement : MonoBehaviour
     {
         _tempDistance = 0;
         _dic = dic.normalized;
+        //Random độ giật -> + thêm góc nhỏ
         float angle = Mathf.Atan2(_dic.y, _dic.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle + angleOffset);
     }

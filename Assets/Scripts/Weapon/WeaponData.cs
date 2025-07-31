@@ -8,7 +8,10 @@ public class WeaponData : ScriptableObject
     public string nameW;
     public float damage;
     public float reloadTime;
+    public float timePerShot;
     public float speedBullet;
     public float rangeBullet;
+    public int magazineCapacity;
+    public int magazines;
     public GameObject bulletPfb;
 }

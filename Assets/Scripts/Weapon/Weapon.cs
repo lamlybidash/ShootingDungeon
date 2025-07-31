@@ -16,11 +16,12 @@ public abstract class Weapon : MonoBehaviour
     protected GameObject bulletPfb;
     protected GameObject listBulletParent; //GameObject chứa object đạn
     protected bool canAttack;
+    protected bool isReloading;
     protected List<GameObject> bullets;
     protected GameObject gunFlash;
     protected Transform barrel;
-    protected int currentBullet;
-    protected int currentMagazine;
+    protected int currentBullet;    // Số lượng đạn hiện tại của băng đạn
+    protected int currentMagazine;  // Số lượng băng đạn khởi đầu của súng
 
     private void Start()
     {
@@ -34,9 +35,13 @@ public abstract class Weapon : MonoBehaviour
         speedBullet = data.speedBullet;
         rangeBullet = data.rangeBullet;
         bulletPfb = data.bulletPfb;
-        canAttack = true;
-        bullets = new List<GameObject>();
+        currentMagazine = data.magazines;
+        magazineCapacity = data.magazineCapacity;
         currentBullet = magazineCapacity;
+        timePerShot = data.timePerShot;
+        canAttack = true;
+        isReloading = false;
+        bullets = new List<GameObject>();
         gunFlash = transform.Find("GunFlash").gameObject;
         barrel = transform.Find("Barrel");
         listBulletParent = GameObject.FindWithTag("Bullets");

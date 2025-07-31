@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,12 +11,18 @@ public class Pistol : Weapon
         {
             return;
         }
-        Debug.Log("Shoot");
         if(currentBullet == 0)
         {
-            currentBullet = magazineCapacity;
-            //TODO
-        }    
+            if(!isReloading)
+            {
+                // Nạp đạn
+                StartCoroutine(ReloadMagazine());
+            }
+            return;
+        }
+
+        currentBullet--;
+        Debug.Log("current bullet = " + currentBullet);
         //Show gun flash
         StartCoroutine(ShowGunFlash());
         GameObject bulletx;
@@ -45,8 +51,19 @@ public class Pistol : Weapon
     private IEnumerator CountTime()
     {
         canAttack = false;
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(timePerShot);
         canAttack = true;
+    }
+
+    //Nạp đạn
+    private IEnumerator ReloadMagazine()
+    {
+        Debug.Log("Nạp đạn");
+        isReloading = true;
+        yield return new WaitForSeconds(reloadTime);
+        Debug.Log("Nạp đạn xong");
+        isReloading = false;
+        currentBullet = magazineCapacity;
     }
 
     //pooling
