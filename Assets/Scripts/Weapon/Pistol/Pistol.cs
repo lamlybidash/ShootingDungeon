@@ -15,7 +15,7 @@ public class Pistol : Weapon
         {
             if(!isReloading)
             {
-                // Nạp đạn
+                // Nạp đạn ∞
                 StartCoroutine(ReloadMagazine());
             }
             return;

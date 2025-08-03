@@ -1,16 +1,30 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private Weapon _weaponCurrent;
+    [SerializeField] private List<GameObject> _slots;
+    [SerializeField] private Image _imgGun1;    // Icon súng
+    [SerializeField] private Image _imgGun2;
+
+    [SerializeField] private TextMeshProUGUI _nameGun1; // Tên súng
+    [SerializeField] private TextMeshProUGUI _nameGun2;
+
+    [SerializeField] private TextMeshProUGUI _bulletText1;  // text số đạn súng 1
+    [SerializeField] private TextMeshProUGUI _bulletText2;
+
+    [SerializeField] private GameObject _reload1; // Gameobject Reload súng 1
+    [SerializeField] private GameObject _reload2;
+
+
     [SerializeField] private Joystick _shootJoystick;
-    //[SerializeField] private GameObject _gunFlash;
-    //[SerializeField] private Transform _barrel;
-    //[SerializeField] private GameObject _bulletPfb;
     private List<GameObject> bullets = new List<GameObject>();
     private int i;
+    private int selected;   //ô select súng 01 súng 2 dao
     private float _speedGun = 0.3f;
     private bool _canAttack;
     void Start()
@@ -18,6 +32,7 @@ public class WeaponController : MonoBehaviour
         i = 0;
         _speedGun = 0.2f;
         _canAttack = true;
+        selected = 2;
     }
 
     void Update()
@@ -27,31 +42,4 @@ public class WeaponController : MonoBehaviour
             _weaponCurrent.Shoot(_shootJoystick.Direction);
         }
     }
-    //public void Shoot()
-    //{
-    //    if (!_canAttack)
-    //    {
-    //        return;
-    //    }
-    //    StartCoroutine(ShowGunFlash());
-    //    GameObject bulletx = Instantiate(_bulletPfb);
-    //    bullets.Add(bulletx);
-    //    bulletx.GetComponent<BulletMovement>().SetPos(_barrel);
-    //    bulletx.GetComponent<BulletMovement>().SetDicrection(_shootJoystick.Direction);
-    //    bulletx.SetActive(true);
-    //    Debug.Log("Shoot");
-    //    StartCoroutine(CountTime());
-    //}
-    //private IEnumerator ShowGunFlash()
-    //{
-    //    _gunFlash.SetActive(true);
-    //    yield return new WaitForSeconds(0.05f);
-    //    _gunFlash.SetActive(false);
-    //}
-    //private IEnumerator CountTime()
-    //{
-    //    _canAttack = false;
-    //    yield return new WaitForSeconds(_speedGun);
-    //    _canAttack = true;
-    //}
 }
