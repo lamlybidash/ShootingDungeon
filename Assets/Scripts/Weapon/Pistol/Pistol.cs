@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,6 +61,7 @@ public class Pistol : Weapon
     {
         Debug.Log("Nạp đạn");
         isReloading = true;
+        InvokeEReload(reloadTime);
         yield return new WaitForSeconds(reloadTime);
         Debug.Log("Nạp đạn xong");
         isReloading = false;

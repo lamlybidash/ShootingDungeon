@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ public abstract class Weapon : MonoBehaviour
     protected Transform barrel;
     protected int currentBullet;    // Số lượng đạn hiện tại của băng đạn
     protected int currentMagazine;  // Số lượng băng đạn khởi đầu của súng
+    public event Action<float> eReload;
 
     private void Start()
     {
@@ -50,6 +52,11 @@ public abstract class Weapon : MonoBehaviour
     public virtual void Shoot(Vector2 dic)
     {
         
+    }
+
+    protected void InvokeEReload(float time)
+    {
+        eReload?.Invoke(time);
     }
     
 }

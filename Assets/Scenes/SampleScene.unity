@@ -2845,7 +2845,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 694287981}
-  - component: {fileID: 694287982}
   m_Layer: 0
   m_Name: InputController
   m_TagString: Untagged
@@ -2868,22 +2867,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &694287982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694287980}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bfe47c10644c8d44b92ad607297f470, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shootJoystick: {fileID: 3532199869374829814}
-  _gunFlash: {fileID: 0}
-  _barrel: {fileID: 0}
-  _bulletPfb: {fileID: 1966051923}
 --- !u!1 &732665011
 GameObject:
   m_ObjectHideFlags: 0
@@ -3064,13 +3047,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 775561866}
+  - component: {fileID: 775561867}
   m_Layer: 5
   m_Name: Reload
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &775561866
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3092,6 +3076,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &775561867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775561865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3472e904f0caf74ba795216f334016b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &792157096
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,6 +3172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 842725394}
+  - component: {fileID: 842725395}
   m_Layer: 5
   m_Name: Reload
   m_TagString: Untagged
@@ -3204,6 +3201,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &842725395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842725393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3472e904f0caf74ba795216f334016b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &851057725
 GameObject:
   m_ObjectHideFlags: 0
@@ -8696,11 +8705,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1966051923 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7356475007131271216, guid: 4744d679f2f8ef745b9a54fb49a40e95, type: 3}
-  m_PrefabInstance: {fileID: 6414136303889853848}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2027254082
 GameObject:
   m_ObjectHideFlags: 0
@@ -8822,14 +8826,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponCurrent: {fileID: 960638921}
   _slots: []
-  _imgGun1: {fileID: 0}
-  _imgGun2: {fileID: 0}
-  _nameGun1: {fileID: 0}
-  _nameGun2: {fileID: 0}
-  _bulletText1: {fileID: 0}
-  _bulletText2: {fileID: 0}
-  _reload1: {fileID: 0}
-  _reload2: {fileID: 0}
+  _imgGun1: {fileID: 438189047}
+  _imgGun2: {fileID: 20247549}
+  _nameGun1: {fileID: 68806735}
+  _nameGun2: {fileID: 16986234}
+  _bulletText1: {fileID: 1257876579}
+  _bulletText2: {fileID: 1546257199}
+  _reload1: {fileID: 775561867}
+  _reload2: {fileID: 842725395}
   _shootJoystick: {fileID: 3532199869374829814}
 --- !u!1 &2111633669
 GameObject:

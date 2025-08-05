@@ -17,8 +17,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _bulletText1;  // text số đạn súng 1
     [SerializeField] private TextMeshProUGUI _bulletText2;
 
-    [SerializeField] private GameObject _reload1; // Gameobject Reload súng 1
-    [SerializeField] private GameObject _reload2;
+    [SerializeField] private Reload _reload1; // Gameobject Reload súng 1
+    [SerializeField] private Reload _reload2;
 
 
     [SerializeField] private Joystick _shootJoystick;
@@ -33,6 +33,7 @@ public class WeaponController : MonoBehaviour
         _speedGun = 0.2f;
         _canAttack = true;
         selected = 2;
+        _weaponCurrent.eReload += ReloadUI;
     }
 
     void Update()
@@ -41,5 +42,10 @@ public class WeaponController : MonoBehaviour
         {
             _weaponCurrent.Shoot(_shootJoystick.Direction);
         }
+    }
+
+    private void ReloadUI(float time)
+    {
+        _reload1.ReloadUI(time);
     }
 }

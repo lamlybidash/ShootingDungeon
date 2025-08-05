@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,11 +14,13 @@ public class Reload : MonoBehaviour
     {
         _bgReload = transform.Find("bg").GetComponent<Image>();
         _textReload = transform.Find("ReloadText").GetComponent<TextMeshProUGUI>();
+        gameObject.SetActive(false);
     }
 
     public void ReloadUI(float time)
     {
         _time = time;
+        gameObject.SetActive(true);
         StartCoroutine(reloadBg());
         StartCoroutine(reloadText());
     }
@@ -39,13 +42,19 @@ public class Reload : MonoBehaviour
     // Text Reload nhấp nháy
     private IEnumerator reloadText()
     {
-        //TODO : nhấp nháy
         float timeCount;
+        float alpha;
         timeCount = 0;
         while (timeCount < _time)
         {
             timeCount += Time.deltaTime;
+            alpha = Mathf.Lerp(0.2f, 1f, Mathf.PingPong(timeCount * 4f, 1f));
+
+            Color c = _textReload.color;
+            _textReload.color = new Color(c.r, c.g, c.b, alpha);
             yield return null;
         }
+        yield return new WaitForEndOfFrame();
+        gameObject.SetActive(false);
     }
 }
