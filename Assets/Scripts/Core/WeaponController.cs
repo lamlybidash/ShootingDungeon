@@ -34,6 +34,7 @@ public class WeaponController : MonoBehaviour
         _canAttack = true;
         selected = 2;
         _weaponCurrent.eReload += ReloadUI;
+        _weaponCurrent.eShoot += UIShoot;
     }
 
     void Update()
@@ -47,5 +48,9 @@ public class WeaponController : MonoBehaviour
     private void ReloadUI(float time)
     {
         _reload1.ReloadUI(time);
+    }
+    private void UIShoot(float time)
+    {
+        _reload1.UIShoot(time);
     }
 }

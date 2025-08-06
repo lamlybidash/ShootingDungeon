@@ -8,23 +8,33 @@ using UnityEngine.UI;
 public class Reload : MonoBehaviour
 {
     private Image _bgReload;
+    private Image _bgPerShoot;
     private TextMeshProUGUI _textReload;
     private float _time;
     void Start()
     {
         _bgReload = transform.Find("bg").GetComponent<Image>();
+        _bgPerShoot = transform.Find("bgPerShoot").GetComponent<Image>();
         _textReload = transform.Find("ReloadText").GetComponent<TextMeshProUGUI>();
-        gameObject.SetActive(false);
+        _bgReload.gameObject.SetActive(false);
+        _bgPerShoot.gameObject.SetActive(false);
+        _textReload.gameObject.SetActive(false);
     }
 
     public void ReloadUI(float time)
     {
         _time = time;
-        gameObject.SetActive(true);
+        _bgReload.gameObject.SetActive(true);
+        _textReload.gameObject.SetActive(true);
         StartCoroutine(reloadBg());
         StartCoroutine(reloadText());
     }
     
+    public void UIShoot(float TimePerShoot)
+    {
+        _bgPerShoot.gameObject.SetActive(true);
+        StartCoroutine(WaitBullet(TimePerShoot));
+    }
 
     // Background unfill từ trên xuống
     private IEnumerator reloadBg()
@@ -37,6 +47,7 @@ public class Reload : MonoBehaviour
             _bgReload.fillAmount = ((_time - timeCount) / _time);
             yield return null;
         }
+        _bgReload.gameObject.SetActive(false);
     }
 
     // Text Reload nhấp nháy
@@ -55,6 +66,20 @@ public class Reload : MonoBehaviour
             yield return null;
         }
         yield return new WaitForEndOfFrame();
-        gameObject.SetActive(false);
+        _textReload.gameObject.SetActive(false);
+    }
+
+    // Nền chờ giữa 2 viên đạn từ phải sang trái
+    private IEnumerator WaitBullet(float TimePerShoot)
+    {
+        float timeCount;
+        timeCount = 0;
+        while (timeCount < TimePerShoot)
+        {
+            timeCount += Time.deltaTime;
+            _bgPerShoot.fillAmount = ((TimePerShoot - timeCount) / _time);
+            yield return null;
+        }
+        _bgPerShoot.gameObject.SetActive(false);
     }
 }

@@ -52,6 +52,7 @@ public class Pistol : Weapon
     private IEnumerator CountTime()
     {
         canAttack = false;
+        InvokeEShoot(timePerShot);
         yield return new WaitForSeconds(timePerShot);
         canAttack = true;
     }
