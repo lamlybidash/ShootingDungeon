@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Pistol : Weapon
 {
+    private BulletMovement _bulletMovementTemp;
     public override void Shoot(Vector2 dic)
     {
         base.Shoot(dic);
@@ -35,11 +36,19 @@ public class Pistol : Weapon
             bullets.Add(bulletx);
             bulletx.transform.SetParent(listBulletParent.transform, false);
         }
-        bulletx.GetComponent<BulletMovement>().SetPos(barrel);
-        bulletx.GetComponent<BulletMovement>().SetSpeed(speedBullet);
-        bulletx.GetComponent<BulletMovement>().SetDicrection(dic);
-        bulletx.GetComponent<BulletMovement>().SetRange(rangeBullet);
+        _bulletMovementTemp = bulletx.GetComponent<BulletMovement>();
+        //bulletx.GetComponent<BulletMovement>().SetPos(barrel);
+        //bulletx.GetComponent<BulletMovement>().SetSpeed(speedBullet);
+        //bulletx.GetComponent<BulletMovement>().SetDicrection(dic);
+        //bulletx.GetComponent<BulletMovement>().SetRange(rangeBullet);
+
+        _bulletMovementTemp.SetPos(barrel);
+        _bulletMovementTemp.SetSpeed(speedBullet);
+        _bulletMovementTemp.SetDicrection(dic);
+        _bulletMovementTemp.SetRange(rangeBullet);
+
         bulletx.SetActive(true);
+
         //Reload bullet
         StartCoroutine(CountTime());
     }
@@ -52,7 +61,7 @@ public class Pistol : Weapon
     private IEnumerator CountTime()
     {
         canAttack = false;
-        InvokeEShoot(timePerShot);
+        InvokeEShoot(timePerShot, currentBullet, magazineCapacity);
         yield return new WaitForSeconds(timePerShot);
         canAttack = true;
     }
@@ -81,4 +90,5 @@ public class Pistol : Weapon
         }
         return null;
     }
+   
 }

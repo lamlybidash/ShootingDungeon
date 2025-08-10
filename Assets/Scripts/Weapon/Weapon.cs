@@ -24,7 +24,7 @@ public abstract class Weapon : MonoBehaviour
     protected int currentBullet;    // Số lượng đạn hiện tại của băng đạn
     protected int currentMagazine;  // Số lượng băng đạn khởi đầu của súng
     public event Action<float> eReload;
-    public event Action<float> eShoot;
+    public event Action<float, int, int> eShoot;
 
     private void Start()
     {
@@ -59,8 +59,12 @@ public abstract class Weapon : MonoBehaviour
     {
         eReload?.Invoke(time);
     }
-    protected void InvokeEShoot(float time)
+    protected void InvokeEShoot(float time, int current, int total)
     {
-        eShoot?.Invoke(time);
+        eShoot?.Invoke(time, current, total);
+    }
+    public int GetMagazineCapacity()
+    {
+        return magazineCapacity;
     }
 }

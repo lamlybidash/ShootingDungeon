@@ -15,7 +15,7 @@ MonoBehaviour:
   nameW: Pistol
   damage: 10
   reloadTime: 2
-  timePerShot: 0.1
+  timePerShot: 0.3
   speedBullet: 8
   rangeBullet: 6
   magazineCapacity: 30
