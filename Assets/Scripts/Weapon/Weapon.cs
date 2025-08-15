@@ -23,6 +23,7 @@ public abstract class Weapon : MonoBehaviour
     protected Transform barrel;
     protected int currentBullet;    // Số lượng đạn hiện tại của băng đạn
     protected int currentMagazine;  // Số lượng băng đạn khởi đầu của súng
+    protected Sprite iconGun;
     public event Action<float> eReload;
     public event Action<float, int, int> eShoot;
 
@@ -42,12 +43,14 @@ public abstract class Weapon : MonoBehaviour
         magazineCapacity = data.magazineCapacity;
         currentBullet = magazineCapacity;
         timePerShot = data.timePerShot;
+        iconGun = data.iconGun;
         canAttack = true;
         isReloading = false;
         bullets = new List<GameObject>();
         gunFlash = transform.Find("GunFlash").gameObject;
         barrel = transform.Find("Barrel");
         listBulletParent = GameObject.FindWithTag("Bullets");
+
     }
 
     public virtual void Shoot(Vector2 dic)
@@ -66,5 +69,15 @@ public abstract class Weapon : MonoBehaviour
     public int GetMagazineCapacity()
     {
         return magazineCapacity;
+    }
+
+    public string GetNameGun()
+    {
+        return nameW;
+    }    
+
+    public Sprite GetIconGun() 
+    {
+        return iconGun; 
     }
 }

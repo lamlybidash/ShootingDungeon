@@ -14,4 +14,5 @@ public class WeaponData : ScriptableObject
     public int magazineCapacity;
     public int magazines;
     public GameObject bulletPfb;
+    public Sprite iconGun;
 }

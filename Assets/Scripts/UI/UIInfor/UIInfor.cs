@@ -10,6 +10,7 @@ public class UIInfor : MonoBehaviour
     private TextMeshProUGUI _textBullet;
     private TextMeshProUGUI _nameGun;
     private Image _iconGun;
+    [SerializeField] private Sprite _iconNone;
 
     private void Awake()
     {
@@ -23,4 +24,8 @@ public class UIInfor : MonoBehaviour
         _textBullet.text = $"{current}/{total}";
     }
 
+    public void SetupNameGun(string NameGun)
+    {
+        _nameGun.text = NameGun;
+    }    
 }
