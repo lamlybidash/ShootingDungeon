@@ -8,6 +8,7 @@ TagManager:
   - GunFlash
   - Hand
   - Bullets
+  - ItemDrop
   layers:
   - Default
   - TransparentFX

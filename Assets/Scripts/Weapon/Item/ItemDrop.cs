@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class ItemDrop : MonoBehaviour
 {
-
+    private GameObject UILoot;
+    private void Awake()
+    {
+        UILoot = null;
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
