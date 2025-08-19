@@ -9,11 +9,19 @@ public class LootButton : Button
     private float _clickThreshold = 0.25f;
     private float _pointerDownTime;
     private bool _isHolding;
-    [SerializeField] private Image iconLoot;
+    [SerializeField] private Image _iconLoot;
+    [SerializeField] private ScrollLoot _SL;
+
+    private Weapon _weapon;
 
     public void SetIconLoot(Sprite sprite)
     {
-        iconLoot.sprite = sprite;
+        _iconLoot.sprite = sprite;
+    }
+
+    public void SetWeapon(Weapon weapon)
+    {
+        _weapon = weapon;
     }
 
     public void OnLootButtonClick()
@@ -31,7 +39,7 @@ public class LootButton : Button
     public override void OnPointerUp(PointerEventData eventData)
     {
         float heldTime = Time.unscaledTime - _pointerDownTime;
-        if(heldTime <= _clickThreshold && !_isHolding)
+        if(heldTime <= _clickThreshold && !eventData.dragging)
         {
             base.OnPointerClick(eventData);
         }

@@ -98,6 +98,7 @@ public class WeaponController : MonoBehaviour
         _imgGun2.sprite = _weapon2.GetIconGun();
     }
 
+
     public void OnGunClick(Weapon x, Reload reload, TextMeshProUGUI bulletText, TextMeshProUGUI nameGun, Image imgGun, GameObject KhungSelected, UIInfor uiInfor, int i)
     {
         selected = i;
@@ -112,4 +113,11 @@ public class WeaponController : MonoBehaviour
         Selected2.SetActive(false);
         KhungSelected.SetActive(true);
     }
+
+    public void ChangeWeapon(Weapon weapon)
+    {
+        //TODO: Drop weapon current
+        _weaponCurrent = weapon;
+        //TODO: Update UI
+    }    
 }
