@@ -4,13 +4,27 @@ using UnityEngine;
 
 public class ScrollLoot : MonoBehaviour
 {
-    [SerializeField] private WeaponController _wc;
     [SerializeField] private List<LootButton> lootButtons;
-    private Weapon _weapon = null;
+    [SerializeField] private GameObject Khung;
+
+    private void Awake()
+    {
+        //Khung.SetActive(false);
+    }
 
     public void ChangeWeapon(Weapon weapon)
     {
-        _weapon = weapon;
 
+
+    }
+
+    public void SetupContent()
+    {
+
+    } 
+
+    public void SetActiveKhung(bool status)
+    {
+        Khung.SetActive(status);
     } 
 }

@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class ItemDrop : MonoBehaviour
 {
-    private GameObject UILoot;
+    private GameObject _UILoot;
+    public IItem item;
+    public IPickupable pickup;
+    public bool isDroped = false;
     private void Awake()
     {
-        UILoot = null;
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+        _UILoot = null;
         
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void SetupItemDrop(IItem item, IPickupable pickup)
     {
-        
+        this.item = item;
+        this.pickup = pickup;
     }
+
+    public void Pickup()
+    {
+        pickup.Pickup();
+    }    
+
 }

@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour, IItem, IPickupable
 {
+    public string Name { get; private set; }
+    public Sprite Icon { get; private set; }
+    public TypeIItem TypeItem { get; private set; }
     [SerializeField] public WeaponData data;
-    protected string nameW;
     protected float damage;
     protected float reloadTime;  // Thời gian nạp một băng đạn
     protected float timePerShot; // Thời gian giữa 2 lần bắn (2 viên đạn liên tiếp)
@@ -23,7 +25,6 @@ public abstract class Weapon : MonoBehaviour
     protected Transform barrel;
     protected int currentBullet;    // Số lượng đạn hiện tại của băng đạn
     protected int currentMagazine;  // Số lượng băng đạn khởi đầu của súng
-    protected Sprite iconGun;
     public event Action<float> eReload;
     public event Action<float, int, int> eShoot;
 
@@ -33,7 +34,10 @@ public abstract class Weapon : MonoBehaviour
     }
     public void InitData()
     {
-        nameW = data.nameW;
+        Name = data.nameW;
+        Icon = data.iconGun;
+        TypeItem = TypeIItem.Weapon;
+
         damage = data.damage;
         reloadTime = data.reloadTime;
         speedBullet = data.speedBullet;
@@ -43,14 +47,13 @@ public abstract class Weapon : MonoBehaviour
         magazineCapacity = data.magazineCapacity;
         currentBullet = magazineCapacity;
         timePerShot = data.timePerShot;
-        iconGun = data.iconGun;
         canAttack = true;
         isReloading = false;
         bullets = new List<GameObject>();
         gunFlash = transform.Find("GunFlash").gameObject;
         barrel = transform.Find("Barrel");
         listBulletParent = GameObject.FindWithTag("Bullets");
-
+        GetComponent<ItemDrop>().SetupItemDrop(this,this);
     }
 
     public virtual void Shoot(Vector2 dic)
@@ -71,13 +74,8 @@ public abstract class Weapon : MonoBehaviour
         return magazineCapacity;
     }
 
-    public string GetNameGun()
+    public void Pickup()
     {
-        return nameW;
-    }    
-
-    public Sprite GetIconGun() 
-    {
-        return iconGun; 
+        Debug.Log($"Pick up {Name}");
     }
 }

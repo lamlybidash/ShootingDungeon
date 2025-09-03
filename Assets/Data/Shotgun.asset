@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 021e601885e97a941b6971bddc7fe627, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  nameW: Ghotgun
+  nameW: Shotgun
   damage: 100
   reloadTime: 1
   timePerShot: 0

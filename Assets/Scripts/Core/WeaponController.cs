@@ -92,10 +92,10 @@ public class WeaponController : MonoBehaviour
     {
         _btGun1.onClick.AddListener(() => OnGunClick(_weapon1, _reload1, _bulletText1, _nameGun1, _imgGun1, Selected1, _infor1, 1));
         _btGun2.onClick.AddListener(() => OnGunClick(_weapon2, _reload2, _bulletText2, _nameGun2, _imgGun2, Selected2, _infor2, 2));
-        _infor1.SetupNameGun(_weapon1.GetNameGun());
-        _infor2.SetupNameGun(_weapon2.GetNameGun());
-        _imgGun1.sprite = _weapon1.GetIconGun();
-        _imgGun2.sprite = _weapon2.GetIconGun();
+        _infor1.SetupNameGun(_weapon1.Name);
+        _infor2.SetupNameGun(_weapon2.Name);
+        _imgGun1.sprite = _weapon1.Icon;
+        _imgGun2.sprite = _weapon2.Icon;
     }
 
 

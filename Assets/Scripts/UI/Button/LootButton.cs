@@ -6,27 +6,28 @@ using UnityEngine.UI;
 
 public class LootButton : Button
 {
+    public ItemDrop _item;
+
     private float _clickThreshold = 0.25f;
     private float _pointerDownTime;
     private bool _isHolding;
-    [SerializeField] private Image _iconLoot;
-    [SerializeField] private ScrollLoot _SL;
+    private Image _iconLoot;
+    private ScrollLoot _SL;
 
-    private Weapon _weapon;
-
-    public void SetIconLoot(Sprite sprite)
+    public void SetItemDrop(ItemDrop itemDrop)
     {
-        _iconLoot.sprite = sprite;
-    }
-
-    public void SetWeapon(Weapon weapon)
-    {
-        _weapon = weapon;
+        if(_iconLoot == null)
+        {
+            gameObject.SetActive(true);
+            _iconLoot = transform.Find("Icon").GetComponent<Image>();
+        }
+        _item = itemDrop;
+        _iconLoot.sprite = itemDrop.item.Icon;
     }
 
     public void OnLootButtonClick()
     {
-        Debug.Log("CLicked");
+        _item.Pickup();
     }
 
     public override void OnPointerDown(PointerEventData eventData)
@@ -52,5 +53,4 @@ public class LootButton : Button
         //Gọi thủ công thông qua thằng OnPointerUp
         //base.OnPointerClick(eventData);
     }
-
 }
