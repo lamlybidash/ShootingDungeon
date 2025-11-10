@@ -22,7 +22,9 @@ public class ItemDrop : MonoBehaviour
 
     public void Pickup()
     {
+        isDroped = false;
         pickup.Pickup();
-    }    
+        gameObject.SetActive(false);
+    }
 
 }

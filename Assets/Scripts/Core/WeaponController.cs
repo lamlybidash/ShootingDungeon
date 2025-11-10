@@ -1,123 +1,110 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] private Weapon _weaponCurrent;
-    [SerializeField] private Weapon _weapon1;
-    [SerializeField] private Weapon _weapon2;
-    [SerializeField] private Weapon _weapon3;
-    [SerializeField] private List<GameObject> _slots;
-    [SerializeField] private Image _imgGun1;    // Icon súng
-    [SerializeField] private Image _imgGun2;
-    [SerializeField] private Image _imgGun;
+    [SerializeField] private Weapon _currentWeapon = null;
+    [SerializeField] private List<WeaponSlot> _slots;
+    [SerializeField] private List<Weapon> _weaponsInMap;
+    [SerializeField] private Transform _arm;
 
-    [SerializeField] private TextMeshProUGUI _nameGun1; // Tên súng
-    [SerializeField] private TextMeshProUGUI _nameGun2;
-    [SerializeField] private TextMeshProUGUI _nameGun;
-
-    [SerializeField] private TextMeshProUGUI _bulletText1;  // text số đạn súng 1
-    [SerializeField] private TextMeshProUGUI _bulletText2;
-    [SerializeField] private TextMeshProUGUI _bulletText;
-
-    [SerializeField] private Reload _reload1; // Gameobject Reload súng 1
-    [SerializeField] private Reload _reload2;
-    [SerializeField] private Reload _reload;
-
-    [SerializeField] private UIInfor _infor1; // Gameobject Infor súng 1
-    [SerializeField] private UIInfor _infor2;
-    [SerializeField] private UIInfor _infor;
-
-    [SerializeField] private GameObject Selected1;  //Gameobject khung select
-    [SerializeField] private GameObject Selected2;
-
-    [SerializeField] private Button _btGun1;
-    [SerializeField] private Button _btGun2;
-    [SerializeField] private Button _btKnife;
-
+    private int _selectedIndex;   //ô select súng 12 súng 3 dao
 
     [SerializeField] private Joystick _shootJoystick;
-    private List<GameObject> bullets = new List<GameObject>();
-    private int i;
-    private int selected;   //ô select súng 12 súng 3 dao
-    private float _speedGun = 0.3f;
-    private bool _canAttack;
+
+    private void Awake()
+    {
+        InitAllWeapon();
+    }
+
     void Start()
     {
-        i = 0;
-        _speedGun = 0.2f;
-        _canAttack = true;
-        selected = 1;
-        _weaponCurrent.eReload += ReloadUI;
-        _weaponCurrent.eShoot += UIShoot;
-        _reload1.ReloadComplete += ReloadComplete;
-        _reload2.ReloadComplete += ReloadComplete;
-        UpdateWeaponEquip();
+        _selectedIndex = 2;
+        SelectSlot(_selectedIndex);
+        SetupWeaponSlot();
     }
 
     void Update()
     {
         if (_shootJoystick.Direction.magnitude > 0.1f)
         {
-            _weaponCurrent.Shoot(_shootJoystick.Direction);
+            if (_currentWeapon != null)
+            {
+                _currentWeapon.Shoot(_shootJoystick.Direction);
+            }
         }
     }
 
-    private void ReloadComplete()
+    //Thay đổi vũ khí
+    public void SelectSlot(int index)
     {
-        int x;
-        x = _weaponCurrent.GetMagazineCapacity();
-        UpdateTextBullet(x, x);
+        Debug.Log($"Select {index}");
+
+        if (index < 0 || index >= _slots.Count || _slots[index].weapon == null) return;
+
+        _currentWeapon?.gameObject.SetActive(false);
+        _slots[_selectedIndex].SetSelected(false);
+
+        _selectedIndex = index;
+        _currentWeapon = _slots[index].weapon;
+        _currentWeapon.gameObject.SetActive(true);
+        for (int i = 0; i < _slots.Count; i++)
+        {
+            _slots[i].SetSelected(i == _selectedIndex);
+        }
     }
 
-    private void ReloadUI(float time)
+    //Gọi khi nhặt vũ khí từ map
+    public void EquipWeapon(Weapon weapon)
     {
-        _reload.ReloadUI(time);
-    }
-    private void UIShoot(float time, int current, int total)
-    {
-        _reload.UIShoot(time);
-        UpdateTextBullet(current, total);
-    }
+        weapon.transform.SetParent(_arm);
+        weapon.transform.localPosition = new Vector3(0, 0, weapon.transform.localPosition.z);
+        weapon.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        weapon.transform.localScale = new Vector3(1f, 1f, 1f);
+        weapon.transform.Find("Hand").gameObject.SetActive(true);
 
-    private void UpdateTextBullet(int current, int total)
-    {
-        _infor.UpdateTextBullet(current, total);
-    }
+        foreach (var slot in _slots)
+        {
+            if (slot.weapon == null)
+            {
+                slot.Equip(weapon);
+                return;
+            }
+        }
+        // Nếu full thì thay vào slot đang chọn
+        var currentSlot = _slots[_selectedIndex];
+        // TODO: Drop current weapon (currentSlot.Weapon)
+        currentSlot.Equip(weapon);
 
-    private void UpdateWeaponEquip()
-    {
-        _btGun1.onClick.AddListener(() => OnGunClick(_weapon1, _reload1, _bulletText1, _nameGun1, _imgGun1, Selected1, _infor1, 1));
-        _btGun2.onClick.AddListener(() => OnGunClick(_weapon2, _reload2, _bulletText2, _nameGun2, _imgGun2, Selected2, _infor2, 2));
-        _infor1.SetupNameGun(_weapon1.Name);
-        _infor2.SetupNameGun(_weapon2.Name);
-        _imgGun1.sprite = _weapon1.Icon;
-        _imgGun2.sprite = _weapon2.Icon;
-    }
-
-
-    public void OnGunClick(Weapon x, Reload reload, TextMeshProUGUI bulletText, TextMeshProUGUI nameGun, Image imgGun, GameObject KhungSelected, UIInfor uiInfor, int i)
-    {
-        selected = i;
-        _weaponCurrent = x;
-        _reload = reload;
-        _bulletText = bulletText;
-        _nameGun = nameGun;
-        _imgGun = imgGun;
-        _infor = uiInfor;
-
-        Selected1.SetActive(false);
-        Selected2.SetActive(false);
-        KhungSelected.SetActive(true);
+        Debug.Log("trans: ");
+        Debug.Log(weapon.transform);
+        //SelectSlot(_selectedIndex);
     }
 
-    public void ChangeWeapon(Weapon weapon)
+    private void InitAllWeapon()
     {
-        //TODO: Drop weapon current
-        _weaponCurrent = weapon;
-        //TODO: Update UI
-    }    
+        foreach (Weapon w in _weaponsInMap)
+        {
+            w.InitData();
+        }
+    }
+    public void InitWeapon(Weapon weapon)
+    {
+       weapon.InitData();
+        _weaponsInMap.Add(weapon);
+    }
+
+    private void SetupWeaponSlot()
+    {
+        for (int i = 0; i < _slots.Count; i++)
+        {
+            int index = i;
+            _slots[i].SelectOnClick(() => SelectSlot(index));
+        }
+    }
 }

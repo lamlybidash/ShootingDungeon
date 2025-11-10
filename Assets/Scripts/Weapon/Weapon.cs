@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -25,12 +26,19 @@ public abstract class Weapon : MonoBehaviour, IItem, IPickupable
     protected Transform barrel;
     protected int currentBullet;    // Số lượng đạn hiện tại của băng đạn
     protected int currentMagazine;  // Số lượng băng đạn khởi đầu của súng
+    protected string _attackClipName;
     public event Action<float> eReload;
     public event Action<float, int, int> eShoot;
 
-    private void Start()
+    public WeaponController wc;
+
+    private void Awake()
     {
         InitData();
+
+    }
+    private void Start()
+    {
     }
     public void InitData()
     {
@@ -47,18 +55,28 @@ public abstract class Weapon : MonoBehaviour, IItem, IPickupable
         magazineCapacity = data.magazineCapacity;
         currentBullet = magazineCapacity;
         timePerShot = data.timePerShot;
+        _attackClipName = data.soundName;
         canAttack = true;
         isReloading = false;
         bullets = new List<GameObject>();
-        gunFlash = transform.Find("GunFlash").gameObject;
+        gunFlash = transform.Find("GunFlash")?.gameObject;
         barrel = transform.Find("Barrel");
         listBulletParent = GameObject.FindWithTag("Bullets");
         GetComponent<ItemDrop>().SetupItemDrop(this,this);
+        wc = GameObject.FindGameObjectWithTag("WeaponController").GetComponent<WeaponController>();
+        
     }
 
     public virtual void Shoot(Vector2 dic)
     {
-        
+        if(!canAttack)
+        {
+            return;
+        } 
+        if (!string.IsNullOrEmpty(_attackClipName))
+        {
+            SoundManager.Instance.PlaySFX(_attackClipName);
+        }
     }
 
     protected void InvokeEReload(float time)
@@ -74,8 +92,15 @@ public abstract class Weapon : MonoBehaviour, IItem, IPickupable
         return magazineCapacity;
     }
 
+    public void ClearAllEvent()
+    {
+        eReload = null;
+        eShoot = null;
+    } 
+
     public void Pickup()
     {
         Debug.Log($"Pick up {Name}");
+        wc.EquipWeapon(this);
     }
 }

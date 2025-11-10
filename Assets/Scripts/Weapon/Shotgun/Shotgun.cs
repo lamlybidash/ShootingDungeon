@@ -61,7 +61,6 @@ public class Shotgun : Weapon
         yield return new WaitForSeconds(reloadTime);
         canAttack = true;
     }
-
     //pooling
     private GameObject FindBullet()
     {
@@ -74,8 +73,6 @@ public class Shotgun : Weapon
         }
         return null;
     }
-
-
     // Trả về vector lệch degrees độ so với vector hướng dic
     private Vector2 RotateVector(Vector2 dic, float degrees)
     {

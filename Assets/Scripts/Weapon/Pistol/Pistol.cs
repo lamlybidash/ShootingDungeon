@@ -37,10 +37,6 @@ public class Pistol : Weapon
             bulletx.transform.SetParent(listBulletParent.transform, false);
         }
         _bulletMovementTemp = bulletx.GetComponent<BulletMovement>();
-        //bulletx.GetComponent<BulletMovement>().SetPos(barrel);
-        //bulletx.GetComponent<BulletMovement>().SetSpeed(speedBullet);
-        //bulletx.GetComponent<BulletMovement>().SetDicrection(dic);
-        //bulletx.GetComponent<BulletMovement>().SetRange(rangeBullet);
 
         _bulletMovementTemp.SetPos(barrel);
         _bulletMovementTemp.SetSpeed(speedBullet);
@@ -69,15 +65,14 @@ public class Pistol : Weapon
     //Nạp đạn
     private IEnumerator ReloadMagazine()
     {
-        Debug.Log("Nạp đạn");
         isReloading = true;
+        canAttack = false;
         InvokeEReload(reloadTime);
         yield return new WaitForSeconds(reloadTime);
-        Debug.Log("Nạp đạn xong");
         isReloading = false;
+        canAttack = true;
         currentBullet = magazineCapacity;
     }
-
     //pooling
     private GameObject FindBullet()
     {

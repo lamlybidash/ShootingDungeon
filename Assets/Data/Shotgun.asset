@@ -20,5 +20,6 @@ MonoBehaviour:
   rangeBullet: 3
   magazineCapacity: 0
   magazines: 0
+  soundName: Knife
   bulletPfb: {fileID: 4172979606746734390, guid: df5149d05fbc8c74581b65e0bbc66e3c, type: 3}
   iconGun: {fileID: 21300000, guid: 5bcc7177c1d7ce240a427b0d80e19037, type: 3}

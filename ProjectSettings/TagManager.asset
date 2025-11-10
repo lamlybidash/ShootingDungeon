@@ -9,6 +9,9 @@ TagManager:
   - Hand
   - Bullets
   - ItemDrop
+  - WeaponController
+  - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX
