@@ -12,6 +12,7 @@ TagManager:
   - WeaponController
   - Enemy
   - Weapon
+  - DamageZone
   layers:
   - Default
   - TransparentFX

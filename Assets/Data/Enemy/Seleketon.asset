@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521d6caab9fe1fd4480333102dc13d29, type: 3}
+  m_Name: Seleketon
+  m_EditorClassIdentifier: 
+  nameE: Seleketon
+  damage: 10
+  timePerShot: 0.5
+  rangeAttack: 1
+  unitPfb: {fileID: 8836323668800863452, guid: 0631a91ce4152c5438f77f358a7fc64e, type: 3}
+  acName: Seleketon

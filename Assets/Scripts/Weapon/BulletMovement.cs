@@ -44,4 +44,5 @@ public class BulletMovement : MonoBehaviour
     {
         _speed = speed;
     }
+
 }

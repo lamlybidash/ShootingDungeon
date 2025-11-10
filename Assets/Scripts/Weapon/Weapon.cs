@@ -26,7 +26,8 @@ public abstract class Weapon : MonoBehaviour, IItem, IPickupable
     protected Transform barrel;
     protected int currentBullet;    // Số lượng đạn hiện tại của băng đạn
     protected int currentMagazine;  // Số lượng băng đạn khởi đầu của súng
-    protected string _attackClipName;
+    protected string _attackACName;
+    protected string _reloadACName;
     public event Action<float> eReload;
     public event Action<float, int, int> eShoot;
 
@@ -55,7 +56,8 @@ public abstract class Weapon : MonoBehaviour, IItem, IPickupable
         magazineCapacity = data.magazineCapacity;
         currentBullet = magazineCapacity;
         timePerShot = data.timePerShot;
-        _attackClipName = data.soundName;
+        _attackACName = data.acName + "_attack";
+        _reloadACName = data.acName +"_reload";
         canAttack = true;
         isReloading = false;
         bullets = new List<GameObject>();
@@ -73,9 +75,9 @@ public abstract class Weapon : MonoBehaviour, IItem, IPickupable
         {
             return;
         } 
-        if (!string.IsNullOrEmpty(_attackClipName))
+        if (!string.IsNullOrEmpty(_attackACName))
         {
-            SoundManager.Instance.PlaySFX(_attackClipName);
+            SoundManager.Instance.PlaySFX(_attackACName);
         }
     }
 

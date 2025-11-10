@@ -16,7 +16,6 @@ public class Knife : Weapon
             return;
         }
 
-        Debug.Log("Chém");
         Thrust(dic);
         EffectDame();
         StartCoroutine(CountTime());
@@ -64,6 +63,7 @@ public class Knife : Weapon
         Vector3 start = transform.localPosition;
         Vector3 target = start + new Vector3(1, 0, 0) * rangeBullet;
         float elapsed = 0f;
+        gameObject.tag = "DamageZone";
 
         while (elapsed < time)
         {
@@ -81,6 +81,7 @@ public class Knife : Weapon
         // Đảm bảo chốt về vị trí gốc
         transform.localPosition = start;
         _rotationKnife = StartCoroutine(RotationKnife());
+        gameObject.tag = "Untagged";
     }
 
 }

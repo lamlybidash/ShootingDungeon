@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be691a32ea11cad44949ebf4f9598e79
+guid: 261b175269a641e41a51c7f5e0fc809b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,6 +94,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -110,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemies-vampire_movement_0
+      name: vampire_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e65612e5e333cc468b4869a675f8e8b
-      internalID: -222258040
+      spriteID: ae3ad9becaee91a48ae13d6a02d58bf5
+      internalID: -1150074906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_movement_1
+      name: vampire_idle_1
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6c96f5621779d14dbce7d9e21d7a619
-      internalID: 1158587367
+      spriteID: e15deef891199f84aa17f2afad282ae4
+      internalID: -874990657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_movement_2
+      name: vampire_idle_2
       rect:
         serializedVersion: 2
         x: 64
@@ -166,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7efef8c7443e1464bba3309819178318
-      internalID: -865326535
+      spriteID: 50f156f05596c574b925f7ec2b8d68c1
+      internalID: 1937186465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_movement_3
+      name: vampire_idle_3
       rect:
         serializedVersion: 2
         x: 96
@@ -187,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b17a89831ed15184bbd584aefce6a02a
-      internalID: -49232458
+      spriteID: ab28d4922568668449f86fdc742026b8
+      internalID: 1936611555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_movement_4
+      name: vampire_idle_4
       rect:
         serializedVersion: 2
         x: 128
@@ -208,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb15c941202945b409a624afa55244b5
-      internalID: 1021323503
+      spriteID: be7133ef5be0e834d8315542ed55f7d9
+      internalID: -1061322931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_movement_5
+      name: vampire_idle_5
       rect:
         serializedVersion: 2
         x: 160
@@ -229,50 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2064926024ee30d4eb05477d98380911
-      internalID: 870474119
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies-vampire_movement_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89968380cd5a17041bf01f9ae02d9cfe
-      internalID: 2091893999
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies-vampire_movement_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f7cdfae29d44fd04e9fb6ea42dc3de82
-      internalID: 1830422878
+      spriteID: 4198719ff80f5434c84f3efc86251cd3
+      internalID: 470238671
       vertices: []
       indices: 
       edges: []
@@ -288,14 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      enemies-vampire_movement_0: -222258040
-      enemies-vampire_movement_1: 1158587367
-      enemies-vampire_movement_2: -865326535
-      enemies-vampire_movement_3: -49232458
-      enemies-vampire_movement_4: 1021323503
-      enemies-vampire_movement_5: 870474119
-      enemies-vampire_movement_6: 2091893999
-      enemies-vampire_movement_7: 1830422878
+      vampire_idle_0: -1150074906
+      vampire_idle_1: -874990657
+      vampire_idle_2: 1937186465
+      vampire_idle_3: 1936611555
+      vampire_idle_4: -1061322931
+      vampire_idle_5: 470238671
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -13,7 +13,7 @@ public class WeaponData : ScriptableObject
     public float rangeBullet;
     public int magazineCapacity;
     public int magazines;
-    public string soundName;
     public GameObject bulletPfb;
     public Sprite iconGun;
+    public string acName;
 }

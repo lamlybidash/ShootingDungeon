@@ -13,6 +13,9 @@ public class Pistol : Weapon
         {
             return;
         }
+
+        //Logic Attack
+
         if(currentBullet == 0)
         {
             if(!isReloading)
